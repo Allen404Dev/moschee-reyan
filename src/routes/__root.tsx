@@ -8,7 +8,7 @@ export const Route = createRootRoute({
         <div>Aktivitäten</div>
         <div>Gottesdienst</div>
         <div>Moscheekauf</div>
-        <div>Kontakt</div>
+        <div>Kontakt test</div>
       </nav>
       <main>
         <Outlet />
