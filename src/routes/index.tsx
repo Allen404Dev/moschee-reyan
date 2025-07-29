@@ -5,21 +5,42 @@ import sufaraImage from "../assets/sufara.png";
 import individuallUnterrichtImage from "../assets/individueller_unterricht.png";
 import dersSamstag from "../assets/ders_samstag.png";
 import rukijaSitzung from "../assets/rukija_sitzung.png";
+import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { SpendenBalken } from "@/components/SpendenBalken";
+import { SpendenKreis } from "@/components/SpendenKreis";
 
 export const Route = createFileRoute("/")({
   component: App,
 });
 
 function App() {
+  const getResponsiveAos = (largeScreenType: string) => {
+    const isLargeScreen = window.innerWidth >= 1024;
+    return isLargeScreen ? largeScreenType : "fade-right";
+  };
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <>
-      <section className="h-[1000px] container mx-auto py-20">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-amber-400 to-red-800 bg-clip-text text-transparent text-center">
+      <section className="container mx-auto py-20">
+        <h2
+          className="text-4xl font-bold bg-gradient-to-r from-amber-400 to-red-800 bg-clip-text text-transparent text-center"
+          data-aos="zoom-in"
+        >
           Aktivitäten
-        </h1>
+        </h2>
         <div className="grid lg:grid-cols-3 grid-cols-1 py-10 gap-8">
           {/* halka Quran Card */}
-          <div className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4">
+          <div
+            className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4"
+            data-aos={getResponsiveAos("fade-right")}
+            data-aos-offset={window.innerWidth >= 1024 ? "400" : "200"}
+          >
             <div className="relative">
               <img src={halkaImage} className="rounded-2xl w-full" />
               <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/90 to-transparent rounded-b-2xl pointer-events-none"></div>
@@ -56,11 +77,12 @@ function App() {
             </div>
           </div>
 
-          {/* Mekteb Card 
-          https://www.islamweb.net/de/article/224569/Unseren-Kindern-den-Isl%C3%A2m-beibringen-%E2%80%93-Eine-wichtige-isl%C3%A2mische-Pflicht
-          
-          */}
-          <div className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4">
+          {/* Mekteb Card */}
+          <div
+            className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4"
+            data-aos={getResponsiveAos("fade-down")}
+            data-aos-offset={window.innerWidth >= 1024 ? "400" : "200"}
+          >
             <div className="relative">
               <img src={mektebImage} className="rounded-2xl w-full" />
               <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/90 to-transparent rounded-b-2xl pointer-events-none"></div>
@@ -103,7 +125,11 @@ function App() {
           </div>
 
           {/* Sufara Card */}
-          <div className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4">
+          <div
+            className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4"
+            data-aos={getResponsiveAos("fade-left")}
+            data-aos-offset={window.innerWidth >= 1024 ? "400" : "200"}
+          >
             <div className="relative">
               <img src={sufaraImage} className="rounded-2xl w-full" />
               <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/90 to-transparent rounded-b-2xl pointer-events-none"></div>
@@ -138,7 +164,11 @@ function App() {
           </div>
 
           {/* indiviudall Unterricht Card */}
-          <div className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4">
+          <div
+            className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4"
+            data-aos={getResponsiveAos("fade-right")}
+            data-aos-offset={window.innerWidth >= 1024 ? "1000" : "200"}
+          >
             <div className="relative">
               <img
                 src={individuallUnterrichtImage}
@@ -157,7 +187,7 @@ function App() {
               dich in bestimmten Bereichen weiterbilden willst – der Imam nimmt
               sich gerne Zeit für dich.
             </div>
-            <div>
+            <div className="text-center text-gray-700">
               Der Unterricht erfolgt nach vorheriger Terminvereinbarung – sprich
               den Imam einfach persönlich an oder kontaktiere uns über die
               bekannten Wege. Offen für alle Altersgruppen und Wissensstände.
@@ -167,7 +197,11 @@ function App() {
           </div>
 
           {/* Rukija Card */}
-          <div className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4">
+          {/*  <div
+            className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4"
+            data-aos={getResponsiveAos("fade-up")}
+            data-aos-offset={window.innerWidth >= 1024 ? "1000" : "200"}
+          >
             <div className="relative">
               <img src={rukijaSitzung} className="rounded-2xl w-full" />
               <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/90 to-transparent rounded-b-2xl pointer-events-none"></div>
@@ -211,10 +245,14 @@ function App() {
               keine medizinische Behandlung, kann aber begleitend hilfreich sein
               – immer im Vertrauen auf Allah (tawakkul).
             </div>
-          </div>
+          </div> */}
 
           {/*Samstag Ders */}
-          <div className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4">
+          <div
+            className="flex flex-col justify-start items-center gap-4 shadow-xl text-sm rounded-xl p-4"
+            data-aos={getResponsiveAos("fade-left")}
+            data-aos-offset={window.innerWidth >= 1024 ? "1000" : "200"}
+          >
             <div className="relative">
               <img src={dersSamstag} className="rounded-2xl w-full" />
               <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black/90 to-transparent rounded-b-2xl pointer-events-none"></div>
@@ -234,8 +272,8 @@ function App() {
               <span className="font-bold italic">
                 Beginn ist jeweils nach dem Abendgebet (Maghrib)
               </span>
-              . Die Dauer ist überschaubar, aber der Nutzen ist groß – in schā
-              Allāh.
+              . Die Dauer ist überschaubar, aber der Nutzen ist groß – in scha
+              Allah.
             </div>
             <div className="text-center text-gray-700">
               Von Zeit zu Zeit dürfen wir auch{" "}
@@ -260,6 +298,55 @@ function App() {
           </div>
         </div>
       </section>
+
+      <div>
+        {/* Graue Sektion mit Inhalt und Platz für die untere Welle */}
+        <section className="relative bg-gray-700 py-20 pb-40 h-[1000px] z-10 text-white">
+          {/* Wellen-Übergang oben */}
+          <div className="-mt-31 overflow-hidden pb-0">
+            <svg
+              className="block w-full h-12"
+              viewBox="0 0 1440 150"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#374151" /* bg-gray-700 */
+                d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,58.7C672,53,768,75,864,96C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96V150H0Z"
+              />
+            </svg>
+          </div>
+
+          <h2
+            className="text-4xl font-bold text-center pt-20"
+            data-aos="zoom-in"
+          >
+            Moscheekauf
+          </h2>
+          <SpendenBalken ziel={780000} gesammelt={155000} />
+          {/* <SpendenKreis ziel={780000} gesammelt={155000} /> */}
+
+          {/* Untere Welle */}
+          <div
+            className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] text-[0] pointer-events-none -mb-12"
+            style={{ height: "80px" }}
+          >
+            <svg
+              className="block w-full h-full"
+              viewBox="0 0 1440 320"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#374151"
+                transform="scale(1, -1) translate(0, -320)"
+                d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,74.7C960,75,1056,117,1152,133.3C1248,149,1344,139,1392,133.3L1440,128V320H0Z"
+              />
+            </svg>
+          </div>
+        </section>
+      </div>
+
       <section className="h-[1000px]"></section>
     </>
   );

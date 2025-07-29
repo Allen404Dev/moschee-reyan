@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import heroImage from "../assets/bild5.jpg";
 import logo from "../assets/logo/Znak bez adrese.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export const Route = createRootRoute({
   component: () => {
+    useEffect(() => {
+      AOS.init({ duration: 1000, once: true });
+      AOS.refresh();
+    }, []);
+
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -54,10 +61,12 @@ export const Route = createRootRoute({
                   "Gottesdienst",
                   "Moscheekauf",
                   "Kontakt",
-                ].map((item) => (
+                ].map((item, i) => (
                   <div
                     key={item}
                     className="cursor-pointer hover:text-amber-500 transition-colors duration-500"
+                    data-aos="zoom-in"
+                    data-aos-delay={i * 400}
                   >
                     {item}
                   </div>
@@ -65,7 +74,12 @@ export const Route = createRootRoute({
               </div>
 
               {/* Logo */}
-              <img src={logo} className="w-24" />
+              <img
+                src={logo}
+                className="w-24"
+                data-aos="fade-left"
+                data-aos-delay="0"
+              />
             </div>
 
             {/* Mobile-Menü (sichtbar wenn Hamburger geöffnet) */}
@@ -99,10 +113,18 @@ export const Route = createRootRoute({
             }`}
           >
             <h1 className="text-5xl lg:text-6xl font-bold mb-4 drop-shadow-2xl drop-shadow-amber-100 text-br tracking-widest">
-              Unterstütze den Kauf <br />
-              unsere Moschee
+              <span data-aos="zoom-in" data-aos-delay="300">
+                Unterstütze den Kauf <br />
+              </span>
+              <span data-aos="zoom-in" data-aos-delay="800">
+                unsere Moschee
+              </span>
             </h1>
-            <button className="bg-gradient-to-r from-amber-400 to-amber-800 hover:from-amber-800 hover:to-amber-400 text-white px-8 py-4 rounded-full text-xl transition duration-300 shadow-lg w-fit lowercase">
+            <button
+              className="bg-gradient-to-r from-amber-400 to-amber-800 hover:from-amber-800 hover:to-amber-400 text-white px-8 py-4 rounded-full text-xl transition duration-300 shadow-lg w-fit lowercase"
+              data-aos="zoom-in"
+              data-aos-delay="1300"
+            >
               Spende jetzt
             </button>
           </div>
